@@ -39,8 +39,24 @@ function Airplane(name) {
           + It should return a string with `name` and `age`. Example: "Mary, 50"
   */
   
- function Person() {
-    
+ function Person(name, age) {
+    this.stomach = [];
+    this.name = name;
+    this.age = age;
+  }
+
+  Person.prototype.eat = function(someFood) {
+    if(!(this.stomach.length > 9)){
+        this.stomach.push(someFood);
+    }
+  }
+
+  Person.prototype.poop = function(){
+    this.stomach.length = 0;
+  }
+
+  Person.prototype.toString = function(){
+    return `${this.name}, ${this.age}`;
   }
  
  
@@ -63,8 +79,15 @@ function Airplane(name) {
           + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
   */
   
- function Car() {
-    
+ function Car(model, milesPerGallon) {
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+
+  Car.prototype.fill = function(gallons){
+    this.tank += gallons;
   }
   
   
@@ -83,10 +106,10 @@ function Airplane(name) {
   /* 
     TASK 4
     In your own words explain the four principles for the "this" keyword below:
-    1. 
-    2. 
-    3. 
-    4. 
+    1. If you're in the global scope, "this" will attach to the Window object.
+    2. If you call a function with a dot before it, whatever is before the dot will become "this"
+    3. If you use "this" in a constructor function it will refer to the object being created by the constructor.
+    4. If you use call, bind, or apply - "this" will be explicitly defined.
   */
   
   
